@@ -45,6 +45,7 @@ class EventsViewController: UITableViewController {
     }
     
     @IBAction func goToCreate(_ sender: Any) {
+        self.performSegue(withIdentifier: "ToCreateEventSegue", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
