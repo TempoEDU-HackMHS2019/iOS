@@ -10,10 +10,16 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+struct Event {
+    var name:String+
+    var description:String
+    var rating:Double
+    var id:Int
+}
+
 class EventsViewController: UITableViewController {
     
-    var tdata:[String] = []
-    var tids:[Int] = []
+    var tdata:[Event] = []
     
     let defaults = UserDefaults.standard
     override func viewDidLoad() {
@@ -31,15 +37,11 @@ class EventsViewController: UITableViewController {
                 return
             }
             let json = JSON(response.data as Any)
-            for (key, subJson) in json {
+            for (_, subJson) in json {
                 if subJson["parent"].int == 0 {
-                    if let title = subJson["name"].string {
-                        self.tdata.append(title)
-                        print(self.tdata)
-                    }
-                    if let id = subJson["id"].int {
-                        self.tids.append(id)
-                    }
+                    let ev = Event(name: subJson["name"].string!, description: subJson["description"].string!, rating: subJson["difficulty"].double!, id: subJson["id"].int!)
+                    self.tdata.append(ev)
+                    print(self.tdata)
                 }
                 
             }
@@ -56,12 +58,14 @@ class EventsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
         
         print(indexPath.row)
         print(tdata)
         
-        cell.textLabel?.text = tdata[indexPath.row]
+        cell.titleLabel.text = tdata[indexPath.row].name
+        cell.descriptionLabel.text = tdata[indexPath.row].description
+        cell.cosmos.rating = tdata[indexPath.row].rating
         
         return cell
     }
@@ -70,7 +74,7 @@ class EventsViewController: UITableViewController {
         print("row selected: \(indexPath.row)")
         let cell = tableView.cellForRow(at: indexPath as IndexPath)
         
-        var id = tids[indexPath.row]
+        var id = tdata[indexPath.row].id
         
         defaults.set(id, forKey: defaultsKeys.keyTwo)
         

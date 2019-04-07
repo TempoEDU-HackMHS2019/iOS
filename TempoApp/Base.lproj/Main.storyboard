@@ -197,22 +197,61 @@
                         <color key="backgroundColor" red="1" green="0.50588235290000005" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="1" green="0.50588235290000005" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="L0C-6F-6hR" style="IBUITableViewCellStyleDefault" id="ozs-sh-cgY">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="88" id="ozs-sh-cgY" customClass="EventTableViewCell" customModule="TempoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ozs-sh-cgY" id="4i8-gw-dGT">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="87.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L0C-6F-6hR">
-                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7u-dc-DDy" userLabel="Title">
+                                            <rect key="frame" x="16" y="11" width="52" height="24"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8q-8H-3OF" customClass="CosmosView" customModule="Cosmos">
+                                            <rect key="frame" x="214" y="56" width="119" height="20"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="Filled_Chili"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="Unfilled_Chili"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                    <real key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAs-nL-JeL" userLabel="Description">
+                                            <rect key="frame" x="16" y="43" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="o8q-8H-3OF" firstAttribute="top" secondItem="4i8-gw-dGT" secondAttribute="topMargin" constant="45" id="6Qg-55-DRD"/>
+                                        <constraint firstItem="o8q-8H-3OF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eAs-nL-JeL" secondAttribute="trailing" constant="8" symbolic="YES" id="8SM-Ea-CDD"/>
+                                        <constraint firstItem="d7u-dc-DDy" firstAttribute="leading" secondItem="eAs-nL-JeL" secondAttribute="leading" id="P4b-Ze-7CX"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d7u-dc-DDy" secondAttribute="trailing" constant="20" symbolic="YES" id="XH7-rc-GIG"/>
+                                        <constraint firstItem="d7u-dc-DDy" firstAttribute="leading" secondItem="4i8-gw-dGT" secondAttribute="leadingMargin" id="YOz-Qb-TNc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="o8q-8H-3OF" secondAttribute="bottom" constant="1" id="aiU-78-z8p"/>
+                                        <constraint firstItem="o8q-8H-3OF" firstAttribute="leading" secondItem="4i8-gw-dGT" secondAttribute="leading" constant="214" id="b0B-jg-WeD"/>
+                                        <constraint firstItem="eAs-nL-JeL" firstAttribute="top" secondItem="d7u-dc-DDy" secondAttribute="bottom" constant="8" id="qer-JD-tsn"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="o8q-8H-3OF" secondAttribute="trailing" id="qfp-c0-qhn"/>
+                                        <constraint firstItem="d7u-dc-DDy" firstAttribute="top" secondItem="4i8-gw-dGT" secondAttribute="topMargin" id="xVc-Dm-4fs"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cosmos" destination="o8q-8H-3OF" id="oSB-qO-2Kr"/>
+                                    <outlet property="descriptionLabel" destination="eAs-nL-JeL" id="phC-yU-TwS"/>
+                                    <outlet property="titleLabel" destination="d7u-dc-DDy" id="JKm-gI-VM5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -235,7 +274,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RtS-Bv-WsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2713" y="185"/>
+            <point key="canvasLocation" x="2712.8000000000002" y="184.85757121439281"/>
         </scene>
         <!--Create Event-->
         <scene sceneID="rIh-lQ-F2w">
@@ -620,7 +659,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="BaE-fa-0hF" style="IBUITableViewCellStyleDefault" id="JFO-7L-7nw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="BaE-fa-0hF" style="IBUITableViewCellStyleDefault" id="JFO-7L-7nw" customClass="EventTableViewCell" customModule="TempoApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JFO-7L-7nw" id="7UB-bh-WKC">

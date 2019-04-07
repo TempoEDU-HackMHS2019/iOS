@@ -12,14 +12,13 @@ import SwiftyJSON
 
 class SubEventTableViewController: UITableViewController {
 
-    var tdata:[String] = []
-    var tids:[Int] = []
+    var tdata:[Event] = []
 
     let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
-        var id = defaults.integer(forKey: defaultsKeys.keyTwo)
-        print(id)
+        let id = defaults.integer(forKey: defaultsKeys.keyTwo)
+        print("ID IS: \(id)")
         let authkey = defaults.string(forKey: defaultsKeys.keyOne)
 
         let headers: HTTPHeaders = [
@@ -30,19 +29,20 @@ class SubEventTableViewController: UITableViewController {
             if response.response?.statusCode == 429 {
                 self.viewDidLoad()
             }
-            let json = JSON(response.data as Any)
-            for (key, subJson) in json {
-                    if let title = subJson["name"].string {
-                        self.tdata.append(title)
-                        print(self.tdata)
+            if response.response?.statusCode == 400 {
+                
+            } else {
+                let json = JSON(response.data as Any)
+                for (_, subJson) in json {
+                    if subJson["name"].string != nil {
+                        let ev = Event(name: subJson["name"].string!, description: subJson["description"].string!, rating: subJson["difficulty"].double ?? 0.0, id: subJson["id"].int ?? 0)
+                        self.tdata.append(ev)
                     }
-                    if let id = subJson["id"].int {
-                        self.tids.append(id)
-                    }
-
-
+                    print("Length: \(self.tdata.count)")
+                }
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
+            
         }
     }
 
@@ -51,12 +51,18 @@ class SubEventTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
 
         print(indexPath.row)
-        print(tdata)
+        print("Le data: \(tdata[indexPath.row])")
+        print("Le name: \(tdata[indexPath.row].name)")
+        print("Length of array: \(tdata.count)")
+        
+        let bob = "\(tdata[indexPath.row].name)"
 
-        cell.textLabel?.text = tdata[indexPath.row]
+        cell.titleLabel.text = bob ?? "Nope"
+        cell.descriptionLabel.text = tdata[indexPath.row].description ?? "Nope"
+        cell.cosmos.rating = tdata[indexPath.row].rating ?? 0.0
 
         return cell
     }

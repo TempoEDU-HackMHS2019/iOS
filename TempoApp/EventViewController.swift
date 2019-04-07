@@ -32,6 +32,12 @@ class EventViewController: UIViewController {
         self.id = defaults.integer(forKey: defaultsKeys.keyTwo)
         // Do any additional setup after loading the view.
         
+        updateLabels()
+        
+        
+    }
+    
+    func updateLabels() {
         let authkey = defaults.string(forKey: defaultsKeys.keyOne)
         
         let headers: HTTPHeaders = [
@@ -41,15 +47,18 @@ class EventViewController: UIViewController {
         AF.request("https://api.tempoapp.pro/v1/event/\(self.id)", method: .get, headers: headers).responseJSON { response in
             print(response)
             if response.response?.statusCode == 429 {
-                self.viewDidLoad()
+                self.updateLabels()
+                return
             }
             let json = JSON(response.data as Any)
+            if json["name"].string == nil {
+                self.updateLabels()
+                return
+            }
             self.titleLabel.text = json["name"].string ?? "Unknown!"
-            self.descriptionLabel.text = json["description"].string!
+            self.descriptionLabel.text = json["description"].string ?? "Unknown"
             self.chilis.rating = json["difficulty"].double ?? 0.0
         }
-        
-        
     }
     
     @IBAction func deleteEvent(_ sender: Any) {
