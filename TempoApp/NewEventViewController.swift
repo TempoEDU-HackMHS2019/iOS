@@ -18,12 +18,14 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var chilis: CosmosView!
     @IBOutlet weak var date: UIDatePicker!
     
+    @IBOutlet weak var picker: UIPickerView!
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func saveButton(_ sender: UIStoryboardSegue) {

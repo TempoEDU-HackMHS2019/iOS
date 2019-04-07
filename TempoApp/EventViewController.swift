@@ -23,6 +23,9 @@ class EventViewController: UIViewController {
     let defaults = UserDefaults.standard
     var id = 0
     
+    var tdata:[String] = []
+    var tids:[Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,6 +47,24 @@ class EventViewController: UIViewController {
             self.titleLabel.text = json["name"].string!
             self.descriptionLabel.text = json["description"].string!
             self.chilis.rating = json["difficulty"].double ?? 0.0
+        }
+        
+        AF.request("https://api.tempoapp.pro/v1/event/\(self.id)/children", method: .get, headers: headers).responseJSON { response in
+            print(response)
+            if response.response?.statusCode == 429 {
+                return
+            }
+            let json = JSON(response.data as Any)
+            for (key, subJson) in json {
+                if let title = subJson["name"].string {
+                    self.tdata.append(title)
+                    print(self.tdata)
+                }
+                if let id = subJson["id"].int {
+                    self.tids.append(id)
+                }
+            }
+            self.subEventTableVIew.reloadData()
         }
     }
     
@@ -71,6 +92,32 @@ class EventViewController: UIViewController {
             }
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tdata.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+        
+        print(indexPath.row)
+        print(tdata)
+        
+        cell.textLabel?.text = tdata[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("row selected: \(indexPath.row)")
+        let cell = tableView.cellForRow(at: indexPath as IndexPath)
+        
+        var id = tids[indexPath.row]
+        
+        defaults.set(id, forKey: defaultsKeys.keyTwo)
+        
+        self.performSegue(withIdentifier: "ToEventDetailSegue", sender: self)
     }
     
     /*

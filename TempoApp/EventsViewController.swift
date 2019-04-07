@@ -32,13 +32,16 @@ class EventsViewController: UITableViewController {
             }
             let json = JSON(response.data as Any)
             for (key, subJson) in json {
-                if let title = subJson["name"].string {
-                    self.tdata.append(title)
-                    print(self.tdata)
+                if subJson["parent_id"] != 0 {
+                    if let title = subJson["name"].string {
+                        self.tdata.append(title)
+                        print(self.tdata)
+                    }
+                    if let id = subJson["id"].int {
+                        self.tids.append(id)
+                    }
                 }
-                if let id = subJson["id"].int {
-                    self.tids.append(id)
-                }
+                
             }
             self.tableView.reloadData()
         }
