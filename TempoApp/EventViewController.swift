@@ -18,8 +18,6 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var chilis: CosmosView!
     
-    @IBOutlet weak var subEventTableVIew: UITableView!
-    
     let defaults = UserDefaults.standard
     var id = 0
     
@@ -41,7 +39,7 @@ class EventViewController: UIViewController {
         AF.request("https://api.tempoapp.pro/v1/event/\(self.id)", method: .get, headers: headers).responseJSON { response in
             print(response)
             if response.response?.statusCode == 429 {
-                return
+                self.viewDidLoad()
             }
             let json = JSON(response.data as Any)
             self.titleLabel.text = json["name"].string!
@@ -49,23 +47,7 @@ class EventViewController: UIViewController {
             self.chilis.rating = json["difficulty"].double ?? 0.0
         }
         
-        AF.request("https://api.tempoapp.pro/v1/event/\(self.id)/children", method: .get, headers: headers).responseJSON { response in
-            print(response)
-            if response.response?.statusCode == 429 {
-                return
-            }
-            let json = JSON(response.data as Any)
-            for (key, subJson) in json {
-                if let title = subJson["name"].string {
-                    self.tdata.append(title)
-                    print(self.tdata)
-                }
-                if let id = subJson["id"].int {
-                    self.tids.append(id)
-                }
-            }
-            self.subEventTableVIew.reloadData()
-        }
+        
     }
     
     @IBAction func deleteEvent(_ sender: Any) {
