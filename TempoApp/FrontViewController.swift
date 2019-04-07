@@ -12,16 +12,16 @@ import SwiftyJSON
 import RealmSwift
 
 class FrontViewController: UIViewController {
-    
+    // Define variables we will use later.
     @IBOutlet weak var welcomeLabel: UILabel!
     
     let defaults = UserDefaults.standard
     
+    // This method will run when the view is loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        
+        // Send a request for the user's profile.
         let authkey = defaults.string(forKey: defaultsKeys.keyOne)
         
         let headers: HTTPHeaders = [
@@ -38,29 +38,12 @@ class FrontViewController: UIViewController {
             self.welcomeLabel.text = "Welcome, \(json["username"].string!)"
         }
         
+        // Replace back button with Log-out
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Log-out", style: UIBarButtonItem.Style.plain, target: self, action: #selector(FrontViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
-        
     }
     
-    @objc func back(sender: UIBarButtonItem) {
-        let realm = try! Realm()
-        
-        let data = realm.objects(UserData.self)
-        try! realm.write {
-            realm.delete(data)
-        }
-        // Perform your custom actions
-        // ...
-        // Go back to the previous ViewController
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.hidesBackButton = false
-    }
     
     /*
      // MARK: - Navigation
@@ -71,8 +54,28 @@ class FrontViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    // Button that will go to events
     @IBAction func toEventsButton(_ sender: Any) {
         self.performSegue(withIdentifier: "toEventsSegue", sender: self)
+    }
+    
+    // Method to log out when the button is pressed.
+    @objc func back(sender: UIBarButtonItem) {
+        let realm = try! Realm()
+        
+        let data = realm.objects(UserData.self)
+        try! realm.write {
+            realm.delete(data)
+        }
+        // Go back to the previous ViewController
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    // Hide back button when the view will appear.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.hidesBackButton = false
     }
     
 }

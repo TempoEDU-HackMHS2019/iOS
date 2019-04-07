@@ -13,6 +13,7 @@ import RealmSwift
 
 class CreateViewController: UIViewController {
 
+    // IBOutlets for labels found in the storyboard.
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passText: UITextField!
     @IBOutlet weak var usernameText: UITextField!
@@ -23,19 +24,22 @@ class CreateViewController: UIViewController {
     let defaults = UserDefaults.standard
     var authkey:String!
     
+    // These run when the view is loaded, however we do not need it.
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
+    // When the create account button is pressed, make the account duh.
     @IBAction func createAccountButton(_ sender: Any) {
+        // Convert input boxes => something we can use.
         let parameters = [
             "email": emailText.text,
             "password": passText.text,
             "phone": phoneText.text,
             "username": usernameText.text
         ]
+        // Send request to the server to make a new account.
         AF.request("https://api.tempoapp.pro/v1/create", method: .post, parameters: parameters).responseJSON { response in
             print(response)
             let json = JSON(response.data as Any)
@@ -50,6 +54,7 @@ class CreateViewController: UIViewController {
             //to get JSON return value
             self.authkey = json["key"].string!
             
+            // Store API key between sessions.
             let realm = try! Realm()
             
             let data = UserData()
@@ -61,23 +66,11 @@ class CreateViewController: UIViewController {
             
             self.defaults.set(self.authkey, forKey: defaultsKeys.keyOne)
             
-            
+            // Off to the front.
             self.performSegue(withIdentifier: "FromCreateToFrontSegue", sender: self)
         }
 
         
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
