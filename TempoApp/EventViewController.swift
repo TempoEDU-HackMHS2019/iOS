@@ -18,6 +18,8 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var chilis: CosmosView!
     
+    @IBOutlet weak var subEventTableVIew: UITableView!
+    
     let defaults = UserDefaults.standard
     var id = 0
     
@@ -42,7 +44,7 @@ class EventViewController: UIViewController {
                 self.viewDidLoad()
             }
             let json = JSON(response.data as Any)
-            self.titleLabel.text = json["name"].string!
+            self.titleLabel.text = json["name"].string ?? "Unknown!"
             self.descriptionLabel.text = json["description"].string!
             self.chilis.rating = json["difficulty"].double ?? 0.0
         }

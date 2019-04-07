@@ -75,5 +75,5 @@ class EventsViewController: UITableViewController {
         defaults.set(id, forKey: defaultsKeys.keyTwo)
         
         self.performSegue(withIdentifier: "ToEventDetailSegue", sender: self)
-    }    
+    }
 }

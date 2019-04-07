@@ -25,15 +25,14 @@ class NewEventViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
     }
     
     @IBAction func saveButton(_ sender: UIStoryboardSegue) {
-        // Add a new meal.
+        // Add a new event.
         print("Button pressed")
         let parameters = [
-            "name": titleLabel.text as! String,
-            "description": descriptionLabel.text as! String,
+            "name": titleLabel.text!,
+            "description": descriptionLabel.text!,
             "difficulty": chilis.rating,
             "type": 1,
             "duedate": date.date
@@ -47,7 +46,7 @@ class NewEventViewController: UIViewController {
         print("Sending request")
         AF.request("https://api.tempoapp.pro/v1/event/create", method: .post, parameters: parameters, headers: headers).responseJSON { response in
             print(response)
-            let json = JSON(response.data as Any)
+            _ = JSON(response.data as Any)
             if response.response?.statusCode == 429 {
                 return
             }

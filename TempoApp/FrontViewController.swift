@@ -17,6 +17,7 @@ class FrontViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     
+    @IBOutlet weak var hotbar: UILabel!
     // This method will run when the view is loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class FrontViewController: UIViewController {
             //to get JSON return value
             let json = JSON(response.data as Any)
             self.welcomeLabel.text = "Welcome, \(json["username"].string!)"
+            self.hotbar.text = "Your hotbar: \(json["hotbar"].double ?? 0.0)"
         }
         
         // Replace back button with Log-out
