@@ -18,6 +18,7 @@
 		F9342C332259B03D0022D152 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342C322259B03D0022D152 /* FrontViewController.swift */; };
 		F9342C352259BCA80022D152 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342C342259BCA80022D152 /* EventsViewController.swift */; };
 		F9342C372259E7FB0022D152 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342C362259E7FB0022D152 /* EventViewController.swift */; };
+		F9342C392259F3330022D152 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342C382259F3330022D152 /* NewEventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		F9342C322259B03D0022D152 /* FrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
 		F9342C342259BCA80022D152 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		F9342C362259E7FB0022D152 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		F9342C382259F3330022D152 /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		F9B8BBBD555146FD866938EE /* Pods-TempoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TempoApp.debug.xcconfig"; path = "Target Support Files/Pods-TempoApp/Pods-TempoApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 				F9342C302259A95E0022D152 /* CreateViewController.swift */,
 				F9342C2822597EC20022D152 /* LoginViewController.swift */,
 				F9342C1A225918D40022D152 /* Main.storyboard */,
+				F9342C382259F3330022D152 /* NewEventViewController.swift */,
 				F9342C362259E7FB0022D152 /* EventViewController.swift */,
 				F9342C342259BCA80022D152 /* EventsViewController.swift */,
 				F9342C1D225918DD0022D152 /* Assets.xcassets */,
@@ -242,6 +245,7 @@
 				F9342C332259B03D0022D152 /* FrontViewController.swift in Sources */,
 				F9342C2922597EC20022D152 /* LoginViewController.swift in Sources */,
 				F9342C17225918D40022D152 /* AppDelegate.swift in Sources */,
+				F9342C392259F3330022D152 /* NewEventViewController.swift in Sources */,
 				F9342C352259BCA80022D152 /* EventsViewController.swift in Sources */,
 				F9342C372259E7FB0022D152 /* EventViewController.swift in Sources */,
 			);
