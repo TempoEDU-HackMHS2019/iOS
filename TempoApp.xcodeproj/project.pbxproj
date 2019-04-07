@@ -16,6 +16,8 @@
 		F9342C2F225998B50022D152 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9342C2E225998B50022D152 /* GoogleService-Info.plist */; };
 		F9342C312259A95E0022D152 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342C302259A95E0022D152 /* CreateViewController.swift */; };
 		F9342C332259B03D0022D152 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342C322259B03D0022D152 /* FrontViewController.swift */; };
+		F9342C352259BCA80022D152 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342C342259BCA80022D152 /* EventsViewController.swift */; };
+		F9342C372259E7FB0022D152 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342C362259E7FB0022D152 /* EventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		F9342C2E225998B50022D152 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9342C302259A95E0022D152 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		F9342C322259B03D0022D152 /* FrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
+		F9342C342259BCA80022D152 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		F9342C362259E7FB0022D152 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		F9B8BBBD555146FD866938EE /* Pods-TempoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TempoApp.debug.xcconfig"; path = "Target Support Files/Pods-TempoApp/Pods-TempoApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,10 +89,12 @@
 			isa = PBXGroup;
 			children = (
 				F9342C16225918D40022D152 /* AppDelegate.swift */,
-				F9342C1A225918D40022D152 /* Main.storyboard */,
 				F9342C322259B03D0022D152 /* FrontViewController.swift */,
 				F9342C302259A95E0022D152 /* CreateViewController.swift */,
 				F9342C2822597EC20022D152 /* LoginViewController.swift */,
+				F9342C1A225918D40022D152 /* Main.storyboard */,
+				F9342C362259E7FB0022D152 /* EventViewController.swift */,
+				F9342C342259BCA80022D152 /* EventsViewController.swift */,
 				F9342C1D225918DD0022D152 /* Assets.xcassets */,
 				F9342C1F225918DD0022D152 /* LaunchScreen.storyboard */,
 				F9342C22225918DD0022D152 /* Info.plist */,
@@ -236,6 +242,8 @@
 				F9342C332259B03D0022D152 /* FrontViewController.swift in Sources */,
 				F9342C2922597EC20022D152 /* LoginViewController.swift in Sources */,
 				F9342C17225918D40022D152 /* AppDelegate.swift in Sources */,
+				F9342C352259BCA80022D152 /* EventsViewController.swift in Sources */,
+				F9342C372259E7FB0022D152 /* EventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
