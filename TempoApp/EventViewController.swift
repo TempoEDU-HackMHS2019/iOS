@@ -18,6 +18,7 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var chilis: CosmosView!
     
+    @IBOutlet weak var subEventTableVIew: UITableView!
     
     let defaults = UserDefaults.standard
     var id = 0
@@ -46,7 +47,32 @@ class EventViewController: UIViewController {
         }
     }
     
-
+    @IBAction func deleteEvent(_ sender: Any) {
+        let authkey = defaults.string(forKey: defaultsKeys.keyOne)
+        
+        let headers: HTTPHeaders = [
+            "Authorization": authkey!
+        ]
+        let alert = UIAlertController(title: "Attention", message: "Are you sure you want to delete this event?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+            print("default")
+        }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {  action in
+            print("destructive")
+            AF.request("https://api.tempoapp.pro/v1/event/\(self.id)", method: .delete, headers: headers).responseJSON { response in
+                print(response)
+                if response.response?.statusCode == 429 {
+                    return
+                }
+                if response.response?.statusCode == 400 {
+                    return
+                }
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
