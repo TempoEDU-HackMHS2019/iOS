@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 struct Event {
-    var name:String+
+    var name:String
     var description:String
     var rating:Double
     var id:Int
